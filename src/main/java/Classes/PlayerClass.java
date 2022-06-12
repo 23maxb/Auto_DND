@@ -1,8 +1,10 @@
 package Classes;
 
 import Dice.Die;
+import Items.Item;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 public abstract class PlayerClass
 {
@@ -32,8 +34,17 @@ public abstract class PlayerClass
 
     public abstract int getHitDieCount();
 
-    public abstract ArrayList<String> getProficiencies(); //TODO: Add proficiency types
+    public abstract ArrayList<String> proficientTags(); //TODO: Add proficiency types
 
+    public abstract boolean isProficient(Item item);
+
+    public abstract ArrayList<String> savingThrowProficiencies();
+
+    public abstract int proficiencyBonus();
+
+    public abstract Map<String, Double> getVars();
+
+    public abstract ArrayList<String> features();
 
 
 }
