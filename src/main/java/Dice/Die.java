@@ -6,7 +6,7 @@ public class Die
     private final int numSides;
     private final int numDice;
 
-    public Die(int Sides, int count)
+    public Die(int count, int Sides)
     {
         this.numSides = Sides;
         this.numDice = count;
