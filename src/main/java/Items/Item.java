@@ -27,8 +27,9 @@ public class Item
         {
             if (!this.tags.contains(tag))
             {
-                return false;
+                return true;
             }
         }
+        return false;
     }
 }
