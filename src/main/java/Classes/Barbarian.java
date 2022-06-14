@@ -49,7 +49,7 @@ public class Barbarian extends PlayerClass
     @Override
     public boolean isProficient(Item item)
     {
-        return item.has(proficientTags());
+        proficientTags();
     }
 
     @Override

@@ -92,6 +92,15 @@ public abstract class PlayerClass
 
     public abstract boolean isProficient(Item item);
 
+    /**
+     * Gets the spell book for the class.
+     * @return
+     */
+    public ArrayList<String> getSpellBook()
+    {
+        return null;
+    }
+
     public abstract ArrayList<String> savingThrowProficiencies();
 
     public abstract ArrayList<String> skillProficiencies();

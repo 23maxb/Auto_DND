@@ -3,6 +3,7 @@ package Items;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 
 public class Item
 {
@@ -10,26 +11,33 @@ public class Item
     public String description;
     public int value;
     public int weight;
-    public ArrayList<Tag> tags;
+    public String completeID;
 
-    public Item(String name, String description, int value, int weight, Tag... tags)
+    public List<Tag> tags;
+
+    public Item(String name, String description, int value, int weight, Tag... completeID)
     {
         this.name = name;
         this.description = description;
         this.value = value;
         this.weight = weight;
-        this.tags = new ArrayList<Tag>(Arrays.asList(tags));
+        this.completeID = Arrays.toString(completeID).replace("[", "").replace("]", "").replace(
+                ", ", ".").toLowerCase(); //completeID should have
+        // path to the item
+        // example path: "item.dress.armor.light.studdedleatherarmor"
+        // example path: "item.consumable.potion.potionofhealing"
+        // example path: "item.weapon.martial_weapon.battleaxe"
     }
 
-    public boolean has(List<Tag> tags)
+    /**
+     * Checks through the item path and also the manually added tags to see if they match the tag
+     * to check
+     *
+     * @param tagToCheck The tag to check for a match with.
+     * @return true if this item or any of its tags match the given tag.
+     */
+    public boolean has(Tag tagToCheck)
     {
-        for (Tag tag : tags)
-        {
-            if (!this.tags.contains(tag))
-            {
-                return true;
-            }
-        }
-        return false;
+        return this.completeID.contains(tagToCheck.getTagName()) || tags.contains(tagToCheck);
     }
 }
