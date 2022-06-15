@@ -1,4 +1,4 @@
-package Magic;
+package Action.Magic;
 
 import java.util.ArrayList;
 

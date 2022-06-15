@@ -1,5 +1,6 @@
 package Entity;
 
+import Action.Action;
 import Classes.PlayerClass;
 import Items.CoinPurse;
 import Items.Item;
@@ -24,6 +25,8 @@ public class Player extends Entity
     public int initiative;
     public int proficiencyBonus;
     public int xp;
+    public ArrayList<Action> actions;
+
     public Player(String name, CoinPurse coins, PlayerClass theClass, Race race,
                   ArrayList<Effect> effects, ArrayList<Item> inventory)
     {
@@ -35,6 +38,21 @@ public class Player extends Entity
     public void generateMaxHP()
     {
 
+    }
+
+    @Override
+    public void processBonuses() //TODO Implement these
+    {
+        super.processRaceBonus();
+        super.processEquipedBonus();
+        super.processEffectBonus();
+        super.processInventoryBonus();
+        this.processClassBonus();
+    }
+
+    public void processClassBonus()
+    {
+        for()
     }
 
 

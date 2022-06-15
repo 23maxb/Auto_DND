@@ -1,6 +1,6 @@
-package Magic;
+package Action.Magic;
 
-public class Spell
+public class Spell extends Action
 {
     public String name;
     public String description;
@@ -20,6 +20,7 @@ public class Spell
         Abjuration, Conjuration, Divination, Enchantment, Evocation, Illusion, Necromancy,
         Transmutation
     }
+    public School school;
 
     public String getName()
     {

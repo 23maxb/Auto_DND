@@ -2,9 +2,12 @@ package Entity;
 
 import Items.Item;
 import Races.Race;
+import Status.Damage;
+import Status.DamageType;
 import Status.Effect;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 public class Entity
@@ -26,11 +29,29 @@ public class Entity
     public Entity(String name, Race race, ArrayList<Effect> effects,
                   ArrayList<Item> inventory)
     {
+        resistanceMultipliers = blankResistance();
         this.name = name;
         this.race = race;
         this.alive = true;
         this.effects = effects;
         this.inventory = inventory;
+        processBonuses();
+    }
+
+    public void processBonuses() //TODO Implement these
+    {
+        processRaceBonus();
+        processEquipedBonus();
+        processEffectBonus();
+        processInventoryBonus();
+    }
+
+    public HashMap<DamageType, Double> blankResistance()
+    {
+        HashMap<DamageType, Double> a = new HashMap<>();
+        for (int i = 0; i < DamageType.values().length; i++)
+            a.put(DamageType.values()[i], 1.0);
+        return a;
     }
 
     public String getName()
@@ -91,5 +112,12 @@ public class Entity
     public void setInventory(ArrayList<Item> inventory)
     {
         this.inventory = inventory;
+    }
+
+    public Map<DamageType, Double> resistanceMultipliers;
+
+    public double getResistanceMultiplier(DamageType d)
+    {
+        return resistanceMultipliers.get(d);
     }
 }
