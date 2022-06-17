@@ -5,7 +5,11 @@ import Items.Item;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 import static Interaction.Input.promptOptions;
 
@@ -26,6 +30,12 @@ public class Barbarian extends PlayerClass
 
     }
 
+    /**
+     * Returns the hit die, which is a d12 for barbarians.
+     * This will always be 1dx.
+     *
+     * @return The hit die.
+     */
     @Override
     public Die getHitDie()
     {
@@ -46,19 +56,23 @@ public class Barbarian extends PlayerClass
                 .toLowerCase()).collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
     }
 
+    /**
+     * Returns true if the proficiency tags that the class grants includes any tag the item has.
+     *
+     * @param item the item to check
+     * @return true if the user would be proficient
+     * otherwise false
+     */
     @Override
     public boolean isProficient(Item item)
     {
-        proficientTags();
+        return IntStream.range(0, item.tags.size()).anyMatch(i -> proficientTags().contains(item.tags.get(i)));
     }
 
     @Override
-    public ArrayList<String> savingThrowProficiencies()
+    public List<String> savingThrowProficiencies()
     {
-        ArrayList<String> savingThrowProficiencies = new ArrayList<String>();
-        savingThrowProficiencies.add("Strength");
-        savingThrowProficiencies.add("Constitution");
-        return savingThrowProficiencies;
+        return Stream.of("Strength, Constitution").collect(Collectors.toList());
     }
 
     private ArrayList<String> skillProficiencies;

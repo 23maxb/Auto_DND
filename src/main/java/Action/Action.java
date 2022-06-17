@@ -19,7 +19,6 @@ public class Action
         this.name = name;
         this.description = description;
         castTime = c;
-
     }
 
 }

@@ -5,6 +5,7 @@ import Classes.PlayerClass;
 import Items.CoinPurse;
 import Items.Item;
 import Races.Race;
+import Stats.StatBook;
 import Status.Effect;
 
 import java.util.ArrayList;
@@ -26,6 +27,8 @@ public class Player extends Entity
     public int proficiencyBonus;
     public int xp;
     public ArrayList<Action> actions;
+    public StatBook stats;
+
 
     public Player(String name, CoinPurse coins, PlayerClass theClass, Race race,
                   ArrayList<Effect> effects, ArrayList<Item> inventory)
@@ -52,8 +55,24 @@ public class Player extends Entity
 
     public void processClassBonus()
     {
-        for()
+        for(int i = 0; i  < classes.size(); i++)
+        {
+            classes.get(i).getHitDie();
+        }
     }
 
 
+    public void applyShortRestBonus()
+    {
+
+    }
+
+    public void applyLongRestBonus()
+    {
+    }
+
+    public int getLongRestDuration()
+    {
+
+    }
 }

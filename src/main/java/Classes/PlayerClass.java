@@ -5,6 +5,7 @@ import Interaction.Input;
 import Items.Item;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public abstract class PlayerClass
@@ -84,6 +85,11 @@ public abstract class PlayerClass
      */
     public abstract void checkBonuses();
 
+    /**
+     * Returns the hit die, which is always 1dx.
+     *
+     * @return The hit die.
+     */
     public abstract Die getHitDie();
 
     public abstract int getHitDieCount();
@@ -94,6 +100,7 @@ public abstract class PlayerClass
 
     /**
      * Gets the spell book for the class.
+     *
      * @return
      */
     public ArrayList<String> getSpellBook()
@@ -101,7 +108,7 @@ public abstract class PlayerClass
         return null;
     }
 
-    public abstract ArrayList<String> savingThrowProficiencies();
+    public abstract List<String> savingThrowProficiencies();
 
     public abstract ArrayList<String> skillProficiencies();
 
