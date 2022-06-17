@@ -6,8 +6,6 @@ public class Spell extends Action
     public String description;
     public int level;
     public boolean ritual;
-    public int castingTime; // in turns (-1 means bonus action and -2 means reaction and 0 means
-    // no casting time)
     public int range; // in feet
     public boolean somatic; //true if the spell requires hand motions
     public boolean material; //true if the spell requires material components
