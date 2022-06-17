@@ -3,6 +3,8 @@ package Classes;
 import Dice.Die;
 import Interaction.Input;
 import Items.Item;
+import Stats.Skill;
+import Stats.Stat;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -108,9 +110,9 @@ public abstract class PlayerClass
         return null;
     }
 
-    public abstract List<String> savingThrowProficiencies();
+    public abstract List<Stat> savingThrowProficiencies();
 
-    public abstract ArrayList<String> skillProficiencies();
+    public abstract List<Skill> skillProficiencies();
 
     /**
      * Gives the proficiency bonus for the class. (based on level)

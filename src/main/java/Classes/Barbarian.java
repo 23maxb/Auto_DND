@@ -2,6 +2,8 @@ package Classes;
 
 import Dice.Die;
 import Items.Item;
+import Stats.Skill;
+import Stats.Stat;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -70,29 +72,24 @@ public class Barbarian extends PlayerClass
     }
 
     @Override
-    public List<String> savingThrowProficiencies()
+    public List<Stat> savingThrowProficiencies()
     {
-        return Stream.of("Strength, Constitution").collect(Collectors.toList());
+        return Stream.of(Stat.Strength, Stat.Constitution).collect(Collectors.toList());
     }
 
-    private ArrayList<String> skillProficiencies;
+    private ArrayList<Skill> skillProficiencies;
 
     @Override
-    public ArrayList<String> skillProficiencies()
+    public List<Skill> skillProficiencies()
     {
         if (skillProficiencies != null)
             return skillProficiencies;
-        ArrayList<String> skillProficiencies = new ArrayList<String>();
         System.out.println("Your class selection allows you to choose two skills to be proficient" +
                 " in.");
         System.out.println("Choose two skills to be proficient in:");
         String[] choices = {"Animal Handling", "Athletics", "Intimidation", "Nature", "Perception"
                 , "Survival"};
-
-        skillProficiencies =
-                Arrays.stream(promptOptions(2, choices)).map(String::trim).collect(ArrayList::new
-                        , java.util.ArrayList::add, java.util.ArrayList::addAll);
-        return skillProficiencies;
+        return Arrays.stream(promptOptions(2, choices)).map(String::trim).map(Skill::valueOf).collect(Collectors.toList());
     }
 
     @Override

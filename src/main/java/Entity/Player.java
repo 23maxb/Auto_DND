@@ -5,6 +5,8 @@ import Classes.PlayerClass;
 import Items.CoinPurse;
 import Items.Item;
 import Races.Race;
+import Stats.Skill;
+import Stats.Stat;
 import Stats.StatBook;
 import Status.Effect;
 
@@ -36,11 +38,21 @@ public class Player extends Entity
         super(name, race, effects, inventory);
         classes = new ArrayList<PlayerClass>();
         classes.add(theClass);
+        stats = new StatBook();
     }
 
-    public void generateMaxHP()
+    public int generateMaxHP()
     {
-
+        int newMax = 0;
+        for (PlayerClass aClass : classes)
+        {
+            int currentTotal = 0;
+            for (int i = 0; i < aClass.getHitDieCount(); i++)
+                currentTotal += aClass.getHitDie().roll() + stats.statModifier(Stat.Constitution);
+            if (currentTotal > newMax)
+                newMax = currentTotal;
+        }
+        return newMax;
     }
 
     @Override
@@ -55,10 +67,19 @@ public class Player extends Entity
 
     public void processClassBonus()
     {
-        for(int i = 0; i  < classes.size(); i++)
-        {
-            classes.get(i).getHitDie();
-        }
+        maxHP = generateMaxHP();
+
+        //Processing saving throw proficiencies
+        for (PlayerClass aClass : classes)
+            for (int i = 0; i < aClass.savingThrowProficiencies().size(); i++)
+                stats.savingThrowProficiencies.put(aClass.savingThrowProficiencies().get(i), true);
+
+        //Processing skill proficiencies
+        for (PlayerClass aClass : classes)
+            for (int i = 0; i < aClass.skillProficiencies().size(); i++)
+                stats.skillProficiencies.put(aClass.skillProficiencies().get(i), true);
+
+
     }
 
 
