@@ -79,7 +79,12 @@ public class Player extends Entity
             for (int i = 0; i < aClass.skillProficiencies().size(); i++)
                 stats.skillProficiencies.put(aClass.skillProficiencies().get(i), true);
 
-
+        //Processing features
+        for (PlayerClass aClass : classes)
+        {
+            aClass.getFeatures();
+            proficiencyBonus = aClass.proficiencyBonus();
+        }
     }
 
 

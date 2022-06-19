@@ -1,10 +1,12 @@
 package Classes;
 
+import Action.Action;
 import Dice.Die;
 import Interaction.Input;
 import Items.Item;
 import Stats.Skill;
 import Stats.Stat;
+import Status.Effect;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -87,6 +89,23 @@ public abstract class PlayerClass
      */
     public abstract void checkBonuses();
 
+    public abstract void setDefaultVars(int level);
+
+    /**
+     * Updates internal variables whenever a sunrise occurs.
+     */
+    public abstract void sunrise();
+
+    /**
+     * Updates internal variables whenever a short rest occurs.
+     */
+    public abstract void shortRest();
+
+    /**
+     * Updates internal variables whenever a long rest occurs.
+     */
+    public abstract void longRest();
+
     /**
      * Returns the hit die, which is always 1dx.
      *
@@ -126,6 +145,18 @@ public abstract class PlayerClass
 
     public abstract Map<String, Double> getVars();
 
-    public abstract ArrayList<String> features();
+    /**
+     * Returns a list of actions that the class can perform.
+     *
+     * @return the list of actions a class can perform
+     */
+    public abstract ArrayList<Action> actions();
+
+    /**
+     * Returns a list of effects that the class provides temporarily.
+     *
+     * @return the list of effects a class provides
+     */
+    public abstract ArrayList<Effect> effects();
 
 }

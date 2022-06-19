@@ -1,5 +1,6 @@
 package Action.Rest;
 
+import Action.CastTime;
 import Entity.*;
 
 import static Interaction.Input.prompt;
